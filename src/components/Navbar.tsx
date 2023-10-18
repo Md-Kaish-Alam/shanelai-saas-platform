@@ -5,6 +5,7 @@ import MaxWidthWrapper from "./MaxWidthWrapper"
 import { buttonVariants } from "./ui/button"
 import { ArrowRight } from "lucide-react";
 import UserAccountNav from "./UserAccountNav";
+import MobileNav from "./MobileNav";
 
 const Navbar = () => {
     const { getUser } = getKindeServerSession();
@@ -17,6 +18,7 @@ const Navbar = () => {
                         <span className="text-blue-600 text-2xl">Shanel</span>AI.
                     </Link>
                     {/* add mobile navigation */}
+                    <MobileNav isAuth={!!user} />
 
                     <div className="hidden items-center space-x-4 sm:flex">
                         {!user ? (

@@ -1,6 +1,5 @@
-import { cn } from '@/lib/utils'
+import { cn, constructMetadata } from '@/lib/utils'
 import './globals.css'
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Providers from '@/components/Providers'
@@ -11,10 +10,7 @@ import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata: Metadata = {
-  title: 'ShanelAI | Just Chat with your PDFs...',
-  description: 'An AI web application to interact with your PDFs.',
-}
+export const metadata = constructMetadata()
 
 export default function RootLayout({
   children,
