@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react"
 import MaxWidthWrapper from "@/components/MaxWidthWrapper"
 import { buttonVariants } from "@/components/ui/button"
 import Image from "next/image"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 
 const steps = [
   {
@@ -27,6 +28,9 @@ const steps = [
 {/* <Link href='/pricing' className="text-blue-700 underline underline-offset-2">Pro Plan</Link> */ }
 
 const Home = () => {
+  const { getUser } = getKindeServerSession();
+
+  const user = getUser();
   return (
     <>
       <MaxWidthWrapper className="mb-12 mt-28 sm:mt-40 flex flex-col items-center justify-center text-center">
@@ -47,7 +51,9 @@ const Home = () => {
             size: 'lg',
             className: 'mt-5'
           })}
-          href='/dashboard' target="_blank">
+          href={user ? '/dashboard' : '/sign-up'} 
+          target="_blank"
+        >
           Get Started <ArrowRight className="ml-2 h-5 w-5" />
         </Link>
       </MaxWidthWrapper>

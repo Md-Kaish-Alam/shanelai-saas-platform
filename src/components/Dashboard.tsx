@@ -12,10 +12,10 @@ import { useState } from "react"
 import { getUserSubscriptionPlan } from "@/lib/stripe"
 
 interface DashboardProps {
-    subscriptionPlan:  Awaited<ReturnType<typeof getUserSubscriptionPlan>>
+    subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
 }
 
-const Dashboard = ({ subscriptionPlan }: DashboardProps ) => {
+const Dashboard = ({ subscriptionPlan }: DashboardProps) => {
 
     const [currentlyDeleteingFile, setCurrentlyDeleteingFile] = useState<string | null>(null)
 
@@ -27,10 +27,10 @@ const Dashboard = ({ subscriptionPlan }: DashboardProps ) => {
         onSuccess: () => {
             utils.getUserFiles.invalidate();
         },
-        onMutate({ id }){
+        onMutate({ id }) {
             setCurrentlyDeleteingFile(id);
         },
-        onSettled(){
+        onSettled() {
             setCurrentlyDeleteingFile(null);
         }
     });
@@ -59,11 +59,11 @@ const Dashboard = ({ subscriptionPlan }: DashboardProps ) => {
                             <div className="px-6 mt-4 grid grid-cols-3 place-items-center py-2 gap-6 text-xs text-zinc-500">
                                 <div className="flex item-center gap-2">
                                     <Plus className="h-4 w-4 " />
-                                    {format(new Date(file.createdAt), "MMM yyyy")}
+                                    {format(new Date(file.createdAt), "dd MMM yyyy")}
                                 </div>
                                 <div className="flex item-center gap-2">
                                     <MessageSquare className="h-4 w-4" />
-                                    mocked
+                                    {file.Message.length}
                                 </div>
                                 <Button
                                     size='sm'
@@ -75,7 +75,7 @@ const Dashboard = ({ subscriptionPlan }: DashboardProps ) => {
                                         <Loader2 className="h-4 w-4 animate-spin" />
                                     ) : (
                                         <Trash className="h-4 w-4" />
-                                    ) }
+                                    )}
                                 </Button>
                             </div>
                         </li>

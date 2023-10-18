@@ -42,6 +42,9 @@ export const appRouter = router({
     return await db.file.findMany({
       where: {
         userId
+      },
+      include: {
+        Message: true,
       }
     })
   }),
